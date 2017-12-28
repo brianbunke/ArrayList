@@ -51,7 +51,7 @@
             )) {
                 # Needed for example: 3 | Remove-ArrayObject
                 While ($r -in $Array) {
-                    $Array.Remove($r)
+                    [void]$Array.Remove($r)
                 } #While
             } #WhatIf
         } #ForEach $r
