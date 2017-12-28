@@ -1,6 +1,6 @@
 # ArrayList
 
-Fast, scalable arrays in PowerShell by wrapping .NET's `System.Collections.ArrayList` and `System.Collections.Generic.List<T>`.
+Fast, scalable arrays in PowerShell by wrapping .NET's [`System.Collections.ArrayList`] and [`System.Collections.Generic.List<T>`].
 
 "But aren't those .NET methods already pretty easy to use?" Yes.
 
@@ -70,5 +70,9 @@ Or reach out on Twitter: [@brianbunke]
 
 
 
+[`System.Collections.ArrayList`]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist
+[`System.Collections.Generic.List<T>`]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1
+
 [PowerShell Gallery]: https://www.powershellgallery.com
+
 [@brianbunke]: https://twitter.com/brianbunke
