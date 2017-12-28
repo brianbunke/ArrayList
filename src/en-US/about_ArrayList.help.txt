@@ -1,0 +1,61 @@
+TOPIC
+    about_ArrayList
+
+SHORT DESCRIPTION
+    Arrays in friendly PowerShell syntax, but using faster .NET collections under the hood.
+
+LONG DESCRIPTION
+    ArrayList's goal is to reduce usage of @() and += in PowerShell scripts.
+    
+    That topic has been written about plenty: search "powershell array performance" for details.
+    
+    ArrayList provides commands that follow the same usage pattern, and hopefully are easy enough
+    to remember that you no longer use @() just because you can't remember the .NET syntax.
+
+  GETTING STARTED
+    # Add 100,000 items to a new ArrayList
+    $100k = New-ArrayList
+    Get-Help Add-ArrayObject -Examples
+    1..100000 | Add-ArrayObject -Array $100k
+    $100k | Select-Object -First 3 -Last 3
+
+  ADVANCED USES
+    # Use a type-safe Generic.List<T> collection
+    ### int, string, PSCustomObject...bring your own type
+    $10 = New-ArrayList -Type int
+    1..10 | Add-ArrayObject $10
+    
+    # Adding a string fails
+    'test' | Add-ArrayObject $10
+
+    # Remove multiple items at once, instead of the .NET method stopping after the first instance
+    3,3,3 | Add-ArrayObject $10
+    3 | Remove-ArrayObject $10
+
+NOTE
+    New-ArrayList will default to the [System.Collections.ArrayList] type.
+
+    In .NET/C# land, [System.Collections.Generic.List<T>] is preferred. (see below)
+
+    Specifying no type will allow all object types in your ArrayList.
+    Specifying any type at creation will use type in a new Generic.List collection.
+
+SEE ALSO
+    Q: Why didn't you _?
+    A: Choose one of three:
+      1. No need for 100% coverage at release; you can help contribute functions to wrap other methods you use often
+      2. It's entirely possible (likely?) I didn't know you could do it _that way_
+      3. Following 2, there are some interesting quirks when you start diving into List collections
+    
+    On ArrayList vs. List<T>:
+      https://stackoverflow.com/questions/2309694/arraylist-vs-list-in-c-sharp
+
+    On retaining the correct List type and still reporting the correct object count:
+      https://serverfault.com/questions/708832/how-to-cast-as-arraylist-preset-data-in-param-block-and-return-as-arraylist
+      https://connect.microsoft.com/PowerShell/feedback/details/1622532
+
+    On removal of all member objects, instead of only the first instance:
+      https://www.sapien.com/blog/2014/11/18/removing-objects-from-arrays-in-powershell/
+
+KEYWORDS
+    arraylist, list, genericlist, array, collection, append
