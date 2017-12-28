@@ -22,17 +22,20 @@ Install-Module ArrayList
 ```
 
 ### Usage
+Easy mode:
 
 ```powershell
-### EASY MODE
 # Capture an empty ArrayList
 $10 = New-ArrayList
 # Append one/many objects via the pipeline
 1..10 | Add-ArrayObject -Array $10
 # And review
 $10
+```
 
-### ADVANCED FEATURES
+Advanced features:
+
+```powershell
 # Create a type-safe List<T> collection
 $DirList = New-ArrayList -Type PSCustomObject
 
@@ -55,8 +58,11 @@ $DirList |
     Remove-ArrayObject $DirList
 # And view again
 $DirList
+```
 
-### Review the help at any time!
+Review the help at any time!
+
+```powershell
 Get-Command -Module ArrayList
 Get-Help Add-ArrayObject -Full
 Get-Help about_ArrayList
