@@ -46,7 +46,7 @@
     #>
     [CmdletBinding()]
     param (
-        [System.Collections.ArrayList]$Array,
+        $Array,
 
         [Parameter(
             Mandatory = $true,

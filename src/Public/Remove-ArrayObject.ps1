@@ -9,6 +9,10 @@
     .EXAMPLE
     
 
+    .NOTES
+    https://www.sapien.com/blog/2014/11/18/removing-objects-from-arrays-in-powershell/
+    https://p0w3rsh3ll.wordpress.com/2012/11/24/delete-elements-from-an-array/
+
     .LINK
     https://github.com/brianbunke/ArrayList
     #>
@@ -17,7 +21,7 @@
         ConfirmImpact = 'Medium'
     )]
     param (
-        [System.Collections.ArrayList]$Array,
+        $Array,
 
         [Parameter(
             Mandatory = $true,

@@ -15,9 +15,21 @@
     .OUTPUTS
     [System.Collections.ArrayList]
 
+    .NOTES
+
+
     .LINK
     https://github.com/brianbunke/ArrayList
     #>
 
-    New-Object System.Collections.ArrayList
+    [CmdletBinding()]
+    param (
+        [string]$Type
+    )
+
+    If ($Type) {
+        New-Object System.Collections.Generic.List[$Type]
+    } Else {
+        New-Object System.Collections.ArrayList
+    }
 }
