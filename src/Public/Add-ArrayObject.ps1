@@ -5,7 +5,7 @@
 
     .DESCRIPTION
     Adds input objects into a specified ArrayList.
-    Uses the .Add() or .AddRange() method to append.
+    Based on object count, uses the .Add() or .AddRange() method to append.
 
     .EXAMPLE
     $a = New-ArrayList
@@ -16,6 +16,7 @@
     .EXAMPLE
     1, 'test' | Add-ArrayObject -Array $a
     Pipe objects of different types into the $a array.
+    This example works only with an ArrayList (default New-ArrayList behavior).
 
     .EXAMPLE
     Get-Service | Select-Object -First 5 | Add-ArrayObject $a
@@ -35,7 +36,7 @@
 
     PS C:\> $a | Where-Object {$_.Ver -gt [version]'1.0'}
 
-    A common use case for appending into arrays is inside ForEach loops.
+    A common use case for appending into arrays is from within ForEach loops.
     Here, inside each PSModulePath, get the version/name of each module,
     then store them in the $a array using the PSCustomObject type.
 
@@ -46,8 +47,13 @@
     #>
     [CmdletBinding()]
     param (
+        # A list, typically captured in a variable from New-ArrayList.
+        # No validation is performed, but -Array assumes a collection of type
+        # [System.Collections.ArrayList] or [System.Collections.Generic.List<T>].
+        [Parameter(Mandatory = $true)]
         $Array,
 
+        # One or more objects to append into the provided array.
         [Parameter(
             Mandatory = $true,
             ValueFromPipeline = $true
@@ -55,17 +61,15 @@
         $InputObject
     )
 
-    BEGIN {
-    }
-
     PROCESS {
-        If ($InputObject.Count -gt 1) {
-            [void]$Array.AddRange($InputObject)
-        } Else {
-            [void]$Array.Add($InputObject)
+        Try {
+            If ($InputObject.Count -gt 1) {
+                [void]$Array.AddRange($InputObject)
+            } Else {
+                [void]$Array.Add($InputObject)
+            }
+        } Catch {
+            $PSCmdlet.ThrowTerminatingError($_)
         }
-    }
-
-    END {
-    }
+    } #PROCESS
 }
