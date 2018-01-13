@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 Embarrassingly, I didn't know how easy it was to create a Generic.List that accepts many object types.
 
 ### Changed
-- Default `New-ArrayList` collection type is now `[System.Collections.Generic.List<Custom.Object>]`
+- Default `New-ArrayList` collection type is now `[System.Collections.Generic.List<System.Object>]`
 
 ### Added
 - If you insist, an ArrayList collection can still be generated with the command `New-ArrayList -Legacy`
