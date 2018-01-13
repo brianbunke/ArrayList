@@ -30,7 +30,7 @@ Install-Module ArrayList
 Easy mode:
 
 ```powershell
-# Capture an empty ArrayList
+# Capture an empty Generic.List<System.Object> collection
 $10 = New-ArrayList
 # Append one/many objects via the pipeline
 1..10 | Add-ArrayObject -Array $10
@@ -81,8 +81,8 @@ Or reach out on Twitter: [@brianbunke]
 
 
 
-[`System.Collections.ArrayList`]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist
 [`System.Collections.Generic.List<T>`]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1
+[`System.Collections.ArrayList`]: https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist
 
 [blog post]: http://www.brianbunke.com/blog/2018/01/04/powershell-arraylist/
 
