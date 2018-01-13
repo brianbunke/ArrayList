@@ -2,14 +2,15 @@
 Import-Module $PSScriptRoot\..\src\ArrayList.psd1
 
 Describe 'New-ArrayList unit tests' -Tags 'unit' {
-    ## ArrayList
+    ## List<object>
+    
+    $GenericList = New-ArrayList
+    $ListType = [string]$GenericList.GetType().UnderlyingSystemType
+    
+    It 'Outputs a Generic.List' {
+        $GenericList | Should -BeNullOrEmpty
 
-    $ArrayList = New-ArrayList
-
-    It 'Outputs a generic ArrayList' {
-        $ArrayList | Should -BeNullOrEmpty
-
-        $ArrayList.GetType().FullName | Should -Be 'System.Collections.ArrayList'
+        $ListType | Should -Be 'System.Collections.Generic.List[System.Object]'
     }
 
     ## List<T>
@@ -31,4 +32,14 @@ Describe 'New-ArrayList unit tests' -Tags 'unit' {
             }
         }
     } #ForEach
+
+    ## ArrayList
+
+    $ArrayList = New-ArrayList -Legacy
+
+    It 'Outputs a generic ArrayList' {
+        $ArrayList | Should -BeNullOrEmpty
+
+        $ArrayList.GetType().FullName | Should -Be 'System.Collections.ArrayList'
+    }
 }

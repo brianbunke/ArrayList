@@ -13,7 +13,7 @@ LONG DESCRIPTION
     to remember that you no longer use @() just because you can't remember the .NET syntax.
 
   GETTING STARTED
-    # Add 100,000 items to a new ArrayList
+    # Add 100,000 items to a new Generic.List collection
     $100k = New-ArrayList
     Get-Help Add-ArrayObject -Examples
     1..100000 | Add-ArrayObject -Array $100k
@@ -33,21 +33,22 @@ LONG DESCRIPTION
     3 | Remove-ArrayObject $10
 
 NOTE
-    New-ArrayList will default to the [System.Collections.ArrayList] type.
+    "New-ArrayList" will default to the [System.Collections.Generic.List<System.Object>] type.
 
-    In .NET/C# land, [System.Collections.Generic.List<T>] is preferred. (see below)
+    Using "New-ArrayList -Type string" will ensure your collection only accepts [string] objects.
 
-    Specifying no type will allow all object types in your ArrayList.
-    Specifying any type at creation will use type in a new Generic.List collection.
+    "New-ArrayList -Legacy" will create an ArrayList, but note that in .NET/C# land,
+    [System.Collections.Generic.List<T>] is preferred. (see below for links)
 
 SEE ALSO
     Q: Why didn't you _?
     A: Choose one of three:
       1. No need for 100% coverage at release; you can help contribute functions to wrap other methods you use often
       2. It's entirely possible (likely?) I didn't know you could do it _that way_
-      3. Following 2, there are some interesting quirks when you start diving into List collections
+      3. Following 2, there are some interesting quirks when you start diving into abstracting List collections
     
     On ArrayList vs. List<T>:
+      https://msdn.microsoft.com/en-us/library/system.collections.arraylist(v=vs.110).aspx#Anchor_6
       https://stackoverflow.com/questions/2309694/arraylist-vs-list-in-c-sharp
 
     On retaining the correct List type and still reporting the correct object count:
